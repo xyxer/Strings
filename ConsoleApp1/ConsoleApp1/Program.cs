@@ -45,9 +45,42 @@ namespace ConsoleApp1
             Console.ReadKey();
 
 
+             //Pig Latin example banana --> anana-bay
+
+            Console.WriteLine("Enter a sentence to convert to PigLatin:");
+            string sentence = Console.ReadLine();
+            string pigLatin = ToPigLatin(sentence);
+            Console.WriteLine(pigLatin);
+
+            Console.ReadKey(); 
 
 
 
         }
+        static string ToPigLatin(string sentence)
+        {
+            string firstLetter,
+                   restOfWord,
+                   vowels = "AEIOUaeio";
+            int currentLetter;
+
+            foreach (string word in sentence.Split())
+            {
+                firstLetter = sentence.Substring(0, 1);
+                restOfWord = sentence.Substring(1, sentence.Length - 1);
+                currentLetter = vowels.IndexOf(firstLetter);
+
+                if (currentLetter == -1)
+                {
+                    sentence = restOfWord + firstLetter + "ay";
+                }
+                else
+                {
+                    sentence = word + "way";
+                }
+            }
+            return sentence;
+        }
+        
     }
 }
